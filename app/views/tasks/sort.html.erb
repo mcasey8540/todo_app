@@ -1,0 +1,11 @@
+<% @tasks.each do |task| %>
+	<% unless task.completed? %>
+		<p>
+			<%= task.description %> |
+			<%= task.priority %> |
+			<%= "Completed" if task.completed? %>
+		</p>
+	<% end %>
+<% end %>
+
+<%= link_to "Back to #{@list.name} list", @list %>

@@ -3,5 +3,6 @@ class List < ActiveRecord::Base
 
   validates :name, :description, :presence => true 
 
-  has_many :tasks
+  has_many :tasks, :order => :priority
+
 end

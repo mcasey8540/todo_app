@@ -2,21 +2,16 @@
 <h2><%= @list.name %></h2>
 <p><%= @list.description %><p>
 <p>
-<label><h4>Incomplete Tasks</h4>
-	<% @list.tasks.incomplete.high_priority.each do |task| %>
+<label><h4>Incomplete Tasks</h4> <%= link_to "Select High Priority Tasks", sort_tasks_path(@list.id) %>
+	<% @list.tasks.incomplete.each do |task| %>
 		<% unless task.description.nil? %>
 			<p><li><%= task.description%> | <%= task.priority == 'high'? task.priority.upcase : task.priority.capitalize %> | <%= link_to "Edit", edit_list_task_path(@list.id, task.id) %> | <%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %></li></p>
 		<% end%>
 	<%end%>
-	<% @list.tasks.incomplete.low_priority.each do |task| %>
-			<% unless task.description.nil? %>
-			<p><li><%= task.description%> | <%= task.priority == 'high'? task.priority.upcase : task.priority.capitalize %> | <%= link_to "Edit", edit_list_task_path(@list.id, task.id) %> | <%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %></li></p>
-		<% end%>
-	<%end%>	
 </label>
 </p>
 <p>
-<label><h4>Completed Tasks</h4>
+<label><h4>Completed Tasks</h4><%= link_to "Clear Completed Tasks"%>
 	<% @list.tasks.complete.each do |task| %>
 		<% unless task.description.nil? %>
 			<p><li><%= task.description%></li></p>

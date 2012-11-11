@@ -7,7 +7,6 @@ class Task < ActiveRecord::Base
 
   scope :complete, where(:completed => true)
   scope :incomplete, where(:completed => false)
-  scope :high_priority, where(:priority => 'high')
-	scope :low_priority, where(:priority => 'low')
+
 
 end

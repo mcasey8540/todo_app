@@ -40,7 +40,6 @@ class TasksController < ApplicationController
 
 	def sort
 		@list = List.find(params[:id])
-		@task = @list.tasks.select! {|task| task.priority == 'high'}
-			redirect_to @list
+		@tasks = @list.tasks.select {|a| a.priority == 'high'}
 	end
 end

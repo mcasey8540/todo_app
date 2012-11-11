@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-	respond_to :html, :xml, :js
+	#respond_to :html, :xml, :js
 
 	def index 
 		@lists = List.all
@@ -20,12 +20,12 @@ class ListsController < ApplicationController
 			flash.keep[:notice] = "Create unsuccessful. Try Again"
 			redirect_to new_list_path
 		end
+
 	end
 
 	def show
 		@list = List.find(params[:id])
 		@task = @list.tasks.new
-		@priorities = ['low','high'] 
 	end
 
 	def edit
@@ -49,6 +49,10 @@ class ListsController < ApplicationController
 			redirect_to lists_path
 		end
 	end
+
+
+
+
 
 
 end
