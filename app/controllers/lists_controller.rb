@@ -25,6 +25,7 @@ class ListsController < ApplicationController
 	def show
 		@list = List.find(params[:id])
 		@task = @list.tasks.new
+		@priorities = ['low','high'] 
 	end
 
 	def edit

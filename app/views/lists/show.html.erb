@@ -22,9 +22,10 @@
 <p>
 <label>Add new task:
 	<%= form_for [@list, @task] do |f| %>
-		<p><%= f.text_field :description, :size => 75  %>
+		<p><%= f.text_field :description, :size => 75  %> Priority: <%= f.select(:priority, options_for_select(['low','high'])) %>
 		<%= f.submit %>
 	<% end %>
 </label>
 </p>
+
 <%= link_to "Back to My Todo Lists", lists_path %>
