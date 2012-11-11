@@ -22,4 +22,19 @@ class TasksController < ApplicationController
 			redirect_to @list
 	end
 
+	def edit
+		@list = List.find(params[:list_id])
+		@task = @list.tasks.find(params[:id])
+	end
+
+	def update
+		@list = List.find(params[:list_id])
+		@task = @list.tasks.find(params[:id])
+		if @task.update_attributes(params[:task])
+			redirect_to @list
+		else 
+			flash[:notice] = "Task Edit Unsuccessful"
+			redirect_to edit_list_task
+		end
+	end
 end
