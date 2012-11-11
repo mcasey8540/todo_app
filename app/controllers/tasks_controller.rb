@@ -37,4 +37,10 @@ class TasksController < ApplicationController
 			redirect_to edit_list_task
 		end
 	end
+
+	def sort
+		@list = List.find(params[:id])
+		@task = @list.tasks.select! {|task| task.priority == 'high'}
+			redirect_to @list
+	end
 end

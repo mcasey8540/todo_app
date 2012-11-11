@@ -6,6 +6,8 @@ TodoApp::Application.routes.draw do
 
   match 'lists/:list_id/tasks/:id/complete' => 'tasks#complete', :as  => :complete_task
 
+  match 'lists/:id/sort' => 'tasks#sort', :as => :sort_tasks
+
  # match '/lists/:id/delete' => 'lists#delete', :as => :delete_list
 
   root to: "lists#index" 
