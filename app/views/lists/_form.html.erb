@@ -1,0 +1,15 @@
+<%= flash[:notice] %>
+
+<%= form_for @list do |f| %>
+
+<label> Name:
+	<p><%= f.text_field :name %></p>
+</label>
+
+<label>Description:
+	<p><%= f.text_field :description %></p>
+</label>
+
+<p><%= f.submit %></p>
+
+<% end %>
