@@ -5,7 +5,7 @@
 <label><h4>Incomplete Tasks</h4>
 	<% @list.tasks.incomplete.each do |task| %>
 		<% unless task.description.nil? %>
-			<p><li><%= task.description%> <%= link_to "Edit", edit_list_task_path(@list.id, task.id) %> | <%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %></li></p>
+			<p><li><%= task.description%> | <%= task.priority == 'high'? task.priority.upcase : task.priority.capitalize %> | <%= link_to "Edit", edit_list_task_path(@list.id, task.id) %> | <%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %></li></p>
 		<% end%> 
 	<%end%>
 </label>
@@ -21,10 +21,9 @@
 </p>
 <p>
 <label>Add new task:
-	<%= form_for [@list, @task] do |f| %>
-		<p><%= f.text_field :description, :size => 75  %> Priority: <%= f.select(:priority, options_for_select(['low','high'])) %>
-		<%= f.submit %>
-	<% end %>
+
+	<%= render 'tasks/form' %>
+
 </label>
 </p>
 

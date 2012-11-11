@@ -1,9 +1,4 @@
 <h1><%="Edit Task on #{@list.name} List"%></h1>
 
-<%= form_for [@list, @task]  do |f| %>
+	<%= render 'tasks/form' %>
 
-	<%= f.text_field :description, :size => 75 %>
-
-	<%= f.submit %>
-
-<% end %>
