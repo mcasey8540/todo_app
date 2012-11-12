@@ -12,10 +12,10 @@ class ListsController < ApplicationController
 		@list = List.new(params[:list])
 
 		if @list.save
-			flash.keep[:notice] = "List Created"
+			flash[:notice] = "#{@list.name} List Created"
 			redirect_to @list
 		else
-			flash.keep[:notice] = "Create unsuccessful. Try Again"
+			flash[:alert] = "Something went wrong. Try again"
 			redirect_to new_list_path
 		end
 
@@ -32,11 +32,11 @@ class ListsController < ApplicationController
 
 	def update 
 		@list = List.find(params[:id])
-			if @list.update_attributes(params[:list])
-				flash[:notice] = "Successfully updated"
+			if @list.save(params[:list])
+				flash[:notice] = "List successfully updated"
 				redirect_to @list
 			else
-				flash[:notice] = "Update unsuccessful"
+				flash[:alert] = "Something went wrong. Try again"
 				redirect_to edit_list_path(@list)
 			end
 	end
@@ -45,6 +45,14 @@ class ListsController < ApplicationController
 		@list = List.find(params[:id])
 		if @list.destroy
 			redirect_to lists_path
+		end
+	end
+
+	def clear_completed
+		@list = List.find(params[:id])
+		if @list.tasks.complete.destroy_all
+			flash[:notice] = "Completed tasks have been cleared"
+			redirect_to @list
 		end
 	end
 

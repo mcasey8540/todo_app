@@ -5,13 +5,13 @@
 <label><h4>Incomplete Tasks</h4> <%= link_to "Select High Priority Tasks", sort_tasks_path(@list.id) %>
 	<% @list.tasks.incomplete.each do |task| %>
 		<% unless task.description.nil? %>
-			<p><li><%= task.description%> | <%= task.priority == 'high'? task.priority.upcase : task.priority.capitalize %> | <%= link_to "Edit", edit_list_task_path(@list.id, task.id) %> | <%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %></li></p>
+			<p><li><%= task.description%> | <%= task.priority == 'high'? task.priority.upcase : task.priority.capitalize %> | <%= link_to "Delete", delete_task_path(@list.id, task.id), :confirm => "Are you sure you want to delete #{task.description}?"  %> | <%= link_to "Edit", edit_list_task_path(@list.id, task.id) %> | <%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %></li></p>
 		<% end%>
 	<%end%>
 </label>
 </p>
 <p>
-<label><h4>Completed Tasks</h4><%= link_to "Clear Completed Tasks"%>
+<label><h4>Completed Tasks</h4><%= link_to "Clear Completed Tasks", clear_completed_path, :confirm => "Are you sure you want to clear all completed tasks?" %>
 	<% @list.tasks.complete.each do |task| %>
 		<% unless task.description.nil? %>
 			<p><li><%= task.description%></li></p>

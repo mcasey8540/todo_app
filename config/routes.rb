@@ -8,7 +8,9 @@ TodoApp::Application.routes.draw do
 
   match 'lists/:id/sort' => 'tasks#sort', :as => :sort_tasks
 
- match 'lists/:id/clear_completed_tasks' => 'lists#clear_completed', :as => :clear_completed
+  match 'lists/:id/clear_completed_tasks' => 'lists#clear_completed', :as => :clear_completed
+
+  match 'lists/:list_id/tasks/:id/delete' => 'tasks#delete', :as => :delete_task
 
   root to: "lists#index" 
   # The priority is based upon order of creation:

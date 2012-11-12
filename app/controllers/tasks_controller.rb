@@ -6,10 +6,10 @@ class TasksController < ApplicationController
 		@list = List.find(params[:list_id])
 		@task = @list.tasks.new(params[:task])
 		if @task.save
-			flash[:notice] = "Task create successful"
+			flash[:notice] = "#{@task.description} has been successfully added"
 			redirect_to @list
 		else
-			flash[:notice] = "Task Create Unsuccessful"
+			flash[:alert] = "Something went wrong. Try again"
 			redirect_to @list
 		end
 	end
@@ -18,8 +18,13 @@ class TasksController < ApplicationController
 		@list = List.find(params[:list_id])
 		@task = @list.tasks.find(params[:id])
 		@task.completed = true
-		@task.save
+		if @task.save
+			flash[:notice] = "Congrats! #{@task.description} has been completed"
 			redirect_to @list
+		else
+			flash[:alert] = "Something went wrong. Try again"
+			redirect_to @list
+		end
 	end
 
 	def edit
@@ -31,10 +36,23 @@ class TasksController < ApplicationController
 		@list = List.find(params[:list_id])
 		@task = @list.tasks.find(params[:id])
 		if @task.update_attributes(params[:task])
+			flash[:notice] = "Item successfully updated"
 			redirect_to @list
 		else 
-			flash[:notice] = "Task Edit Unsuccessful"
-			redirect_to edit_list_task
+			flash[:alert] = "Something went wrong. Try again"
+			redirect_to @list
+		end
+	end
+
+	def delete
+		@list = List.find(params[:list_id])
+		@task = Task.find(params[:id])
+		if @task.destroy
+			flash[:notice] = "Task has been successfully deleted"
+			redirect_to @list
+		else
+			flash[:alert] = "Something went wrong. Try again"
+			redirect_to @list
 		end
 	end
 
