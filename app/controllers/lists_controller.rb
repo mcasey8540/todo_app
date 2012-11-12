@@ -1,7 +1,5 @@
 class ListsController < ApplicationController
 
-	#respond_to :html, :xml, :js
-
 	def index 
 		@lists = List.all
 	end
@@ -25,7 +23,7 @@ class ListsController < ApplicationController
 
 	def show
 		@list = List.find(params[:id])
-		@task = @list.tasks.new
+  	@task = @list.tasks.new
 	end
 
 	def edit
@@ -49,10 +47,5 @@ class ListsController < ApplicationController
 			redirect_to lists_path
 		end
 	end
-
-
-
-
-
 
 end

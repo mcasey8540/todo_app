@@ -1,6 +1,8 @@
 TodoApp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  #To declutter the rails logger
+  config.assets.logger = nil
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -9,7 +11,7 @@ TodoApp::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
-  # Show full error reports and disable caching
+  # Show full error reports and disable cachingrail
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
