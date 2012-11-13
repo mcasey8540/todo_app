@@ -12,6 +12,10 @@ TodoApp::Application.routes.draw do
 
   match 'lists/:list_id/tasks/:id/delete' => 'tasks#delete', :as => :delete_task
 
+  match 'lists/:id/sort_low' => 'lists#sort_low'
+
+  #match 'lists/:list_id/tasks/new' => 'tasks#create'
+
   root to: "lists#index" 
   # The priority is based upon order of creation:
   # first created -> highest priority.

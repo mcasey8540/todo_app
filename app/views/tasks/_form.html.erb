@@ -1,3 +1,15 @@
-	<%= form_for [@list, @task] do |f| %>
-		<p><%= f.text_field :description, :size => 75  %> Priority: <%= f.select(:priority, options_for_select(['low','high'])) %>  <%= f.submit %>
-	<% end %>
+	
+		<table class= "table table-striped table-bordered">	
+
+		<%= form_for [@list,@task] do |f| %>	
+
+			<tr>
+				<td><%= f.text_field :description, :size => 75 , :placeholder => "Task Description" %></td> 
+				<td>Priority <%= f.select(:priority, options_for_select(['low','high'])) %></td>
+				<td><%= f.submit class: "btn btn-info" %></td>
+			</tr> 
+
+			<% end %> 
+		</table>
+	
+

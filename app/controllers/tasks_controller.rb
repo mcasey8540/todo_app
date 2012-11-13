@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
 
+	before_filter :find_list, :only => [:create, :complete, :new, :edit, :update, :delete]
+
 	respond_to :html, :xml, :js
 
 	def create
-		@list = List.find(params[:list_id])
 		@task = @list.tasks.new(params[:task])
 		if @task.save
 			flash[:notice] = "#{@task.description} has been successfully added"
@@ -15,7 +16,6 @@ class TasksController < ApplicationController
 	end
 
 	def complete
-		@list = List.find(params[:list_id])
 		@task = @list.tasks.find(params[:id])
 		@task.completed = true
 		if @task.save
@@ -27,13 +27,15 @@ class TasksController < ApplicationController
 		end
 	end
 
+	def new
+		@task = @list.tasks.new(params[:task])
+	end
+
 	def edit
-		@list = List.find(params[:list_id])
 		@task = @list.tasks.find(params[:id])
 	end
 
 	def update
-		@list = List.find(params[:list_id])
 		@task = @list.tasks.find(params[:id])
 		if @task.update_attributes(params[:task])
 			flash[:notice] = "Item successfully updated"
@@ -45,7 +47,6 @@ class TasksController < ApplicationController
 	end
 
 	def delete
-		@list = List.find(params[:list_id])
 		@task = Task.find(params[:id])
 		if @task.destroy
 			flash[:notice] = "Task has been successfully deleted"
@@ -60,4 +61,11 @@ class TasksController < ApplicationController
 		@list = List.find(params[:id])
 		@tasks = @list.tasks.select {|a| a.priority == 'high'}
 	end
+
+private
+	
+	def find_list
+		@list = List.find(params[:list_id])
+	end
+
 end

@@ -25,10 +25,8 @@
 	    		<span class="caret"></span>
 	  			</button>
 	  			<ul class="dropdown-menu">
-	  			<%= link_to "Low to High", list_path(@list, :sort_by => "sort_low") %>
-	  			<%= link_to "High to Low", list_path(@list, :sort_by => "sort_high") %>
-	    		<%#= link_to "Low to High", "#{@list.id}/sort_low" %>
-	    		<%#= link_to "High to Low", @list %>
+	    		<%= link_to "Low to High", "#{@list.id}/sort_low" %>
+	    		<%= link_to "High to Low", "#{@list.id}/sort_high" %>
 	  			</ul>
 					</div></th>
 				<th><div class="btn-group">
@@ -44,7 +42,8 @@
 					</div></th>	
 				<th>Options</th>
 			</tr>
-		<% @tasks.each do |task| %>
+
+		<% @list.tasks.each do |task| %>
 		<% unless task.description.nil? %>
 
 		<tr>

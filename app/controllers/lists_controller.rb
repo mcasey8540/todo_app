@@ -18,11 +18,11 @@ class ListsController < ApplicationController
 			flash[:alert] = "Something went wrong. Try again"
 			redirect_to new_list_path
 		end
-
 	end
 
 	def show
 		@list = List.find(params[:id])
+		@tasks = Task.for_list(@list).sorted_by(params[:sort_by])
   	@task = @list.tasks.new
 	end
 
