@@ -8,68 +8,82 @@
 <p><%= @list.description %><p>
 </br>
 
-<div class="btn-group">
-  <button class="btn">List Options</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
-  	</button>
-  <ul class="dropdown-menu">
-    <%= link_to "Clear Completed Tasks", clear_completed_path, :confirm => "Are you sure you want to clear all completed tasks?" %>
-    <%= link_to "Add New Task",  new_list_task_path(@list) %>
-    <%= link_to "Edit List", edit_list_path(@list) %>
-  </ul>
-</div>
-</br>
-</br>
+	<div class="btn-group">
+	  <button class="btn">List Options</button>
+	  	<button class="btn dropdown-toggle" data-toggle="dropdown">
+	    	<span class="caret"></span>
+	  	</button>
+	  		<ul class="dropdown-menu">
+	    		<%= link_to "Clear Completed Tasks", clear_completed_path, :confirm => "Are you sure you want to clear all completed tasks?" %>
+	    		<%= link_to "Add New Task",  new_list_task_path(@list) %>
+	    		<%= link_to "Edit List", edit_list_path(@list) %>
+	  		</ul>
+	</div>
+  </br>
+  </br>
 		<table class= "table table-striped table-bordered"
 			<tr>
 				<th>My Tasks</th>
-				<th><div class="btn-group">
-	  			<button class="btn">Priority</button>
-	  			<button class="btn dropdown-toggle" data-toggle="dropdown">
-	    		<span class="caret"></span>
-	  			</button>
-	  			<ul class="dropdown-menu">
-	  			<%= link_to "Low to High", list_path(@list, :sort_by => "sort_low") %>
-	  			<%= link_to "High to Low", list_path(@list, :sort_by => "sort_high") %>
-	  			</ul>
-					</div></th>
-				<th><div class="btn-group">
-	  			<button class="btn">Status</button>
-	  			<button class="btn dropdown-toggle" data-toggle="dropdown">
-	    		<span class="caret"></span>
-	  			</button>
-	  			<ul class="dropdown-menu">
-	  			<%= link_to "All", list_path(@list, :sort_by => "all")	%>
-	    		<%= link_to "Complete", list_path(@list, :sort_by => "completed") %>
-	    		<%= link_to "Incomplete", list_path(@list, :sort_by => "incomplete") %>
-	  			</ul>
-					</div></th>	
+				<th>
+					<div class="btn-group">
+	  				<button class="btn">Priority</button>
+	  				<button class="btn dropdown-toggle" data-toggle="dropdown">
+	    				<span class="caret"></span>
+	  				</button>
+	  					<ul class="dropdown-menu">
+	  						<%= link_to "Low to High", list_path(@list, :sort_by => "sort_low") %>
+	  						<%= link_to "High to Low", list_path(@list, :sort_by => "sort_high") %>
+	  					</ul>
+					</div>
+				</th>
+				<th>
+					<div class="btn-group">
+	  				<button class="btn">Status</button>
+	  				<button class="btn dropdown-toggle" data-toggle="dropdown">
+	    				<span class="caret"></span>
+	  				</button>
+	  					<ul class="dropdown-menu">
+	  						<%= link_to "All", list_path(@list, :sort_by => "all")	%>
+	    					<%= link_to "Complete", list_path(@list, :sort_by => "completed") %>
+	    					<%= link_to "Incomplete", list_path(@list, :sort_by => "incomplete") %>
+	  					</ul>
+					</div>
+				</th>	
 				<th>Options</th>
 			</tr>
+
 		<% @tasks.each do |task| %>
-		<% unless task.description.nil? %>
+			<% unless task.description.nil? %>
 
 		<tr>
 			<td width="500"><%= task.description%> </td>
-			<% if task.priority == "high" and task.completed == false %> 
+				<% if task.priority == "high" and task.completed == false %> 
 			<td width="50"><span class="label label-important"><%= task.priority.upcase %></span></td> 
-			<% elsif task.completed? %>
+				<% elsif task.completed? %>
 			<td width="50"></td> 
-			<% else %>
+				<% else %>
 			<td width="50"><span class="label label-success"><%= task.priority %></span></td> 
-			<% end %>
+				<% end %>
 			<td><%= task.completed ? "Completed" : "Incomplete" %></td>
-			<% unless task.completed? %>
-			<td withd="200"><div class="btn-group"><button class="btn"><%= link_to "Delete", delete_task_path(@list.id, task.id), :confirm => "Are you sure you want to delete #{task.description}?"  %></button><button class="btn"><%= link_to "Edit", edit_list_task_path(@list.id, task.id) %></button><button class="btn"><%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %></button></td>
-			<% else %>
-				<td></td>
-			<%end%>
+				<% unless task.completed? %>
+			<td withd="200">
+				<div class="btn-group">
+					<button class="btn">
+						<%= link_to "Delete", delete_task_path(@list.id, task.id), :confirm => "Are you sure you want to delete #{task.description}?"  %>
+					</button>
+					<button class="btn">
+						<%= link_to "Edit", edit_list_task_path(@list.id, task.id) %>
+					</button>
+					<button class="btn">
+						<%= link_to "Complete", complete_task_path(@list.id, task.id), :confirm => "Are you sure you want to complete #{task.description}?" %>
+					</button>
+			</td>
+				<% else %>
+			<td></td>
+				<% end %>
 		</tr>
-		<% end%>
-	<%end%>
-</table>
-	
-</br>
-
-<%= link_to "Back to My Todo Lists", lists_path, class: "btn btn-info" %>
+		<% end %>
+		<% end %>
+		</table>
+	</br>
+<%= link_to "All My Todo Lists", lists_path, class: "btn btn-info" %>
