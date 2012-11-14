@@ -49,17 +49,12 @@ class TasksController < ApplicationController
 	def delete
 		@task = Task.find(params[:id])
 		if @task.destroy
-			flash[:notice] = "Task has been successfully deleted"
+			flash[:notice] = "#{@task.description} has been successfully deleted"
 			redirect_to @list
 		else
 			flash[:alert] = "Something went wrong. Try again"
 			redirect_to @list
 		end
-	end
-
-	def sort
-		@list = List.find(params[:id])
-		@tasks = @list.tasks.select {|a| a.priority == 'high'}
 	end
 
 private

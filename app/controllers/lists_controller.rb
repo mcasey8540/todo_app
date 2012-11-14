@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
 
 	def index 
-		@lists = List.all
+		@lists = List.order(params[:sort_by])
 	end
 
 	def new
