@@ -10,11 +10,12 @@ class Task < ActiveRecord::Base
 
   def self.sorted_by(option)
   	case option
-  	when "sort_low"
-  		order("priority DESC")
-  	else
-  		order("priority")
-  	end
+  	when "sort_low"    then order("completed, priority DESC")
+  	when "sort_high"   then order("completed, priority")
+  	when "completed"   then order("completed DESC")
+    when "incomplete"  then order("completed")
+    else                self.all
+    end
   end
 
   def self.for_list(list)

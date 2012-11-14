@@ -23,6 +23,7 @@ class ListsController < ApplicationController
 	def show
 		@list = List.find(params[:id])
 		@tasks = Task.for_list(@list).sorted_by(params[:sort_by])
+		#@tasks = Task.for_list(@list).sorted_by
   	@task = @list.tasks.new
 	end
 
