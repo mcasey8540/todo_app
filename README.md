@@ -1,4 +1,4 @@
 todo_app
 ========
 
-Add to make Todo lists
+App to make Todo lists
