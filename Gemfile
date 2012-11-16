@@ -13,6 +13,8 @@ gem 'colorize'
 
 gem 'devise'
 
+gem 'cancan'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,6 +34,7 @@ group :development do
 end
 
 gem 'jquery-rails'
+gem 'client_side_validations'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

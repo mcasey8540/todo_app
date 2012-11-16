@@ -22,3 +22,12 @@
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
+
+
+.field_with_errors .message {
+	display: inline;
+	color: #D00;
+	padding-left: 10px;
+}
+
+

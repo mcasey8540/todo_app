@@ -1,9 +1,10 @@
 class List < ActiveRecord::Base
   attr_accessible :description, :name
 
-  validates :name, :description, :presence => true 
+  validates :name, :description, :length => { :minimum => 3 }
 
   has_many :tasks, :order => :priority
+  belongs_to :user
 
   def sorted_tasks(option)
   	case option

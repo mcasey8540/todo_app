@@ -1,15 +1,17 @@
 class ListsController < ApplicationController
 
 	def index 
-		@lists = List.order(params[:sort_by])
+		@lists = current_user.lists.order(params[:sort_by])
 	end
 
 	def new
-		@list = List.new
+		@list = current_user.lists.new
 	end
 
 	def create
-		@list = List.new(params[:list])
+		#@list = List.new(params[:list])
+		@user = current_user
+		@list = @user.lists.new(params[:list])
 
 		if @list.save
 			flash[:notice] = "#{@list.name} List Created"
@@ -21,10 +23,14 @@ class ListsController < ApplicationController
 	end
 
 	def show
-		@list = List.find(params[:id])
-		@tasks = Task.for_list(@list).sorted_by(params[:sort_by])
-		#@tasks = Task.for_list(@list).sorted_by
-  	@task = @list.tasks.new
+		@list = current_user.lists.find_by_id(params[:id])
+		if @list
+			@tasks = Task.for_list(@list).sorted_by(params[:sort_by])
+	 		@task = @list.tasks.new
+	 	else
+	 		flash[:alert] = "Oops. Looks like you're trying to access someone else's list."
+			redirect_to lists_path 
+		end
 	end
 
 	def edit

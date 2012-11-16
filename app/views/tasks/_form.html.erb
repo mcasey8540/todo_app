@@ -4,7 +4,7 @@
 
 		<table class= "table table-striped table-bordered">	
 
-		<%= form_for [@list,@task] do |f| %>	
+		<%= form_for [@list,@task], :validate => true do |f| %>	
 
 			<tr>
 				<td><%= f.text_field :description, :size => 75 , :placeholder => "Task Description" %></td> 

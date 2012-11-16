@@ -5,7 +5,7 @@
 	<div class="alert alert-error"><%= notice %></div>
 <% end %>
 
-<%= form_for @list do |f| %>
+<%= form_for @list, :validate => true do |f| %>
 
 	<label> Name:
 		<p><%= f.text_field :name %></p>

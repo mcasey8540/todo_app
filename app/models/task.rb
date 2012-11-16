@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   attr_accessible :completed, :description, :list_id, :priority
 
-  validates :description, :presence => true
+  validates :description, :length => { :minimum => 3} 
 
   belongs_to :list
 

@@ -1,3 +1,6 @@
+<% if alert %>
+	<div class="alert alert-error"><%= alert %></div>
+<% end %>
 <% if notice %>
 	<div class="alert alert-success"><%= notice %></div>
 <% end %>
@@ -32,4 +35,4 @@
 		<% end %>
 </table> 
 
-<%= link_to "Add New List", new_list_path, class: "btn btn-info" %>
+<%= link_to "Add New List", new_list_path , class: "btn btn-info" %>
