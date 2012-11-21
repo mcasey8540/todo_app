@@ -16,7 +16,7 @@ class ListsController < ApplicationController
 		@list = @user.lists.new(params[:list])
 
 		if @list.save
-			flash[:notice] = "#{@list.name} List Created"
+			flash[:notice] = "#{@list.name} has been created. Go ahead and add some tasks!"
 			redirect_to @list
 		else
 			flash[:alert] = "Something went wrong. Try again"

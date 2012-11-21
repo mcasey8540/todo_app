@@ -7,7 +7,7 @@ class TasksController < ApplicationController
 	def create
 		@task = @list.tasks.new(params[:task])
 		if @task.save
-			flash[:notice] = "#{@task.description} has been successfully added"
+			flash[:notice] = "Yay, #{@task.description} has been added. Now get working!"
 			redirect_to @list
 		else
 			flash[:alert] = "Something went wrong. Try again"
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
 		if @task.completed == false
 			@task.completed = "true"
 			if @task.save
-				flash[:notice] = "Congrats! #{@task.description} has been completed"
+				flash[:notice] = "Congrats! You've completed #{@task.description}!"
 				redirect_to @list
 			else
 				flash[:alert] = "Something went wrong. Try again"
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
 		else
 			@task.completed = false
 			if @task.save
-				flash[:notice] = "#{@task.description} has been changed to incomplete"
+				flash[:notice] = "Oh man, looks like #{@task.description} hasn't been completed."
 				redirect_to @list
 			else
 				flash[:alert] = "Something went wrong. Try again"
