@@ -15,6 +15,7 @@ gem 'devise'
 
 gem 'cancan'
 
+gem 'best_in_place'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,6 +35,7 @@ group :development do
 end
 
 gem 'jquery-rails'
+
 gem 'client_side_validations'
 
 # To use ActiveModel has_secure_password

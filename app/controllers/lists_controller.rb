@@ -1,5 +1,7 @@
 class ListsController < ApplicationController
 
+	respond_to :html, :json
+
 	def index 
 		@lists = current_user.lists.order(params[:sort_by])
 	end
@@ -39,13 +41,15 @@ class ListsController < ApplicationController
 
 	def update 
 		@list = List.find(params[:id])
-			if @list.save(params[:list])
-				flash[:notice] = "List successfully updated"
-				redirect_to @list
-			else
-				flash[:alert] = "Something went wrong. Try again"
-				redirect_to edit_list_path(@list)
-			end
+		respond_to do |format|
+			if @list.update_attributes(params[:list])
+				format.html { redirect_to(@list, :notice => 'User was successfully updated.')}
+				format.json { respond_with_bip(@list) }
+	    else
+	      format.html { render :action => "edit" }
+	      format.json { respond_with_bip(@list) }
+	    end
+	  end
 	end
 
 	def destroy

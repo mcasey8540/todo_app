@@ -1,3 +1,4 @@
+
 <% if notice %>
 	<div class="alert alert-success"><%= notice %></div>
 <% end %>
@@ -6,9 +7,9 @@
 <% end %>
 
 
-<h2><%= @list.name %></h2>
+<h2><%= best_in_place @list, :name %></h2>
 <p>
-<p><%= @list.description %><p>
+<p class="list_description"><%= best_in_place @list, :description %><p>
 </br>
 
 	<div class="btn-group">
@@ -59,7 +60,7 @@
 			<% unless task.description.nil? %>
 
 		<tr>
-			<td width="500"><%= task.description%> </td>
+			<td class="task" width="500"><%= task.description %> </td>
 				<% if task.priority == "high" and task.completed == false %> 
 			<td width="50"><span class="label label-important"><%= task.priority.upcase %></span></td> 
 				<% elsif task.completed? %>
