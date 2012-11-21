@@ -1,4 +1,4 @@
-<%= render "new.js" %>
+<%#= render "new.js" %>
 
 <% if notice %>
 <div class="alert alert-success"><%= notice %></div>
@@ -10,7 +10,7 @@
 
 			<tr>
 				<td><%= f.text_field :description, :size => 75 , :placeholder => "Task Description" %></td>
-				<td><%= f.text_field :due_at, :placeholder => "Due Date"%> </td> 
+				<td><%= f.text_field :due_at, :placeholder => "Due Date", id: "datepicker"%> </td> 
 				<td>Priority <%= f.select(:priority, options_for_select(['low','high'])) %></td>
 				<td><%= f.submit class: "btn btn-info" %></td>
 			</tr> 
