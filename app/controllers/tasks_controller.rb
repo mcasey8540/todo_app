@@ -20,7 +20,7 @@ class TasksController < ApplicationController
 		if @task.completed == false
 			@task.completed = "true"
 			if @task.save
-				flash[:notice] = "Congrats! You've completed #{@task.description}!"
+				flash[:notice] = "Congrats! You've completed #{@task.description}. You should be proud!"
 				redirect_to @list
 			else
 				flash[:alert] = "Something went wrong. Try again"
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
 		else
 			@task.completed = false
 			if @task.save
-				flash[:notice] = "Oh man, looks like #{@task.description} hasn't been completed."
+				flash[:notice] = "Looks like #{@task.description} hasn't been completed. Get crackin!"
 				redirect_to @list
 			else
 				flash[:alert] = "Something went wrong. Try again"
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
 	def update
 		@task = @list.tasks.find(params[:id])
 		if @task.update_attributes(params[:task])
-			flash[:notice] = "Item successfully updated"
+			flash[:notice] = "#{@task.description} successfully updated"
 			redirect_to @list
 		else 
 			flash[:alert] = "Something went wrong. Try again"

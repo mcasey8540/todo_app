@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
 
+	helper_method :sort_column, :sort_direction
 	respond_to :html, :json
 
 	def index 
@@ -28,7 +29,7 @@ class ListsController < ApplicationController
 		#debugger
 		@list = current_user.lists.find_by_id(params[:id])
 		if @list
-			@tasks = Task.for_list(@list)
+			@tasks = Task.for_list(@list).order(sort_column + " " + sort_direction)
 	 		@task = @list.tasks.new
 	 	else
 	 		flash[:alert] = "Oops. Looks like you're trying to access someone else's list."
@@ -71,11 +72,11 @@ class ListsController < ApplicationController
 	private 
 
 	def sort_column
-		Task.column_names.include?(params[:sort_by]) ? params[:sort_by] : "name"
-	end
-
-	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-	end
+    Task.column_names.include?(params[:sort]) ? params[:sort] : "description"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 
 end
