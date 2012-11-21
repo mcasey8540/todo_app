@@ -17,13 +17,24 @@ class TasksController < ApplicationController
 
 	def complete
 		@task = @list.tasks.find(params[:id])
-		@task.completed = true
-		if @task.save
-			flash[:notice] = "Congrats! #{@task.description} has been completed"
-			redirect_to @list
+		if @task.completed == false
+			@task.completed = "true"
+			if @task.save
+				flash[:notice] = "Congrats! #{@task.description} has been completed"
+				redirect_to @list
+			else
+				flash[:alert] = "Something went wrong. Try again"
+				redirect_to @list
+			end
 		else
-			flash[:alert] = "Something went wrong. Try again"
-			redirect_to @list
+			@task.completed = false
+			if @task.save
+				flash[:notice] = "#{@task.description} has been changed to incomplete"
+				redirect_to @list
+			else
+				flash[:alert] = "Something went wrong. Try again"
+				redirect_to @list
+			end
 		end
 	end
 

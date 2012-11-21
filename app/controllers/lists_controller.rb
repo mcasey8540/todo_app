@@ -3,7 +3,7 @@ class ListsController < ApplicationController
 	respond_to :html, :json
 
 	def index 
-		@lists = current_user.lists.order(params[:sort_by])
+		@lists = current_user.lists
 	end
 
 	def new
@@ -25,9 +25,10 @@ class ListsController < ApplicationController
 	end
 
 	def show
+		#debugger
 		@list = current_user.lists.find_by_id(params[:id])
 		if @list
-			@tasks = Task.for_list(@list).sorted_by(params[:sort_by])
+			@tasks = Task.for_list(@list)
 	 		@task = @list.tasks.new
 	 	else
 	 		flash[:alert] = "Oops. Looks like you're trying to access someone else's list."
@@ -65,6 +66,16 @@ class ListsController < ApplicationController
 			flash[:notice] = "Completed tasks have been cleared"
 			redirect_to @list
 		end
+	end
+
+	private 
+
+	def sort_column
+		Task.column_names.include?(params[:sort_by]) ? params[:sort_by] : "name"
+	end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 	end
 
 end

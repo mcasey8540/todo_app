@@ -15,6 +15,7 @@ gem 'best_in_place'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'date_validator'
+gem 'titleize'
 
 
 # Gems used only for assets and not required
@@ -45,4 +46,4 @@ gem 'client_side_validations'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger', group: [:development, :test]
