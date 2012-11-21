@@ -1,7 +1,8 @@
 class Task < ActiveRecord::Base
-  attr_accessible :completed, :description, :list_id, :priority
+  attr_accessible :completed, :description, :list_id, :priority, :due_at
 
-  validates :description, :length => { :minimum => 3} 
+  validates :description, :length => { :minimum => 3}
+  validate :due_date_must_be_today_or_later
 
   belongs_to :list
 
@@ -21,4 +22,9 @@ class Task < ActiveRecord::Base
   def self.for_list(list)
   	where(:list_id => list.id)
   end
+
+  def due_date_must_be_today_or_later
+    errors.add(:due_at, "Must be after today") if due_at < Date.today
+  end
+
 end

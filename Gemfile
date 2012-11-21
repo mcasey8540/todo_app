@@ -14,6 +14,7 @@ gem 'cancan'
 gem 'best_in_place'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
+gem 'date_validator'
 
 
 # Gems used only for assets and not required

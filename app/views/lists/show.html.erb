@@ -39,6 +39,7 @@
 	  						<%= link_to "High to Low", list_path(@list, :sort_by => "sort_high") %>
 	  					</ul>
 					</div>
+				<th>Due Date</th>
 				</th>
 				<th>
 					<div class="btn-group">
@@ -68,6 +69,7 @@
 				<% else %>
 			<td width="50"><span class="label label-success"><%= task.priority %></span></td> 
 				<% end %>
+			<td width ="200"><%= task.due_at.to_date %></td>
 			<td><%= task.completed ? "Completed" : "Incomplete" %></td>
 				<% unless task.completed? %>
 			<td withd="200">

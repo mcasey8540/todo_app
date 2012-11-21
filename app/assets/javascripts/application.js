@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.purr
 //= require best_in_place
+//= require jquery.ui.datepicker
 //= require bootstrap
 //= require rails.validations
 //= require_tree .
