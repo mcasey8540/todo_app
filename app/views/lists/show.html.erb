@@ -8,9 +8,27 @@
 
 
 <h2><%= best_in_place @list, :name %></h2>
-<p>
 <p class="list_description"><%= best_in_place @list, :description %><p>
-</br>
+
+	<% @count_complete = 0 %>
+	<% @count_nil = 0 %>
+	<% @list.tasks.each do |t| %>
+		<%	if t.completed? and t.id != nil %>
+			<% @count_complete +=1 %>
+		<% elsif t.id.nil? %>
+			<% @count_nil +=1 %>
+		<% end %>
+	<% end %>
+
+	<% @list_count 				= (@list.tasks.size - @count_nil).to_f %>
+	<% @count_incomplete 	= @list_count - @count_complete %>
+	<% @percent_complete 	= (@count_complete/@list_count)*100.00 %>
+	<% @percent_incomplete = (@count_incomplete/@list_count)*100 %>
+
+<div class="progress" style="width: 75%;">
+  <div class="bar bar-success" style="width:<%= @percent_complete%>%;"></div>
+  <div class="bar bar-warning" style="width:<%= @percent_incomplete%>%;"></div>
+</div>
 
 	<div class="btn-group">
 	  <button class="btn">List Options</button>
