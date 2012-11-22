@@ -12,6 +12,9 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
+  <div><%= f.label :phone_number %><br />
+  <%= f.text_field :phone_number, placeholder: "XXXXXXXXX" %></div>
+	</br>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
