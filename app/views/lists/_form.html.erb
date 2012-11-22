@@ -6,19 +6,7 @@
 <% end %>
 
 <%= form_for @list, :validate => true do |f| %>
-
-	<label> Name:
-		<p><%= f.text_field :name %></p>
-	</label>
-
-	<label>Description:
-		<p>
-			<%= f.text_field :description %>
-		</p>
-	</label>
-
-	<p>
-		<%= f.submit class: "btn btn-info" %>
-	</p>
-
+	<p><%= f.text_field :name, placeholder: "Name" %></p>
+	<p><%= f.text_field :description, placeholder: "Description" %></p>
+	<%= f.submit class: "btn btn-info" %>
 <% end %>
