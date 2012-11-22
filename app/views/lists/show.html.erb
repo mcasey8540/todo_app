@@ -38,7 +38,7 @@
 		<tr>
 			<td class="task" width="500"><%= task.description %> </td>
 				<% if task.priority == "high" %> 
-			<td width="50"><span class="label label-important"><%= task.priority.upcase %></span></td> 
+			<td width="50"><span class="label label-important"><%= task.priority %></span></td> 
 				<% else %>
 			<td width="50"><span class="label label-success"><%= task.priority %></span></td> 
 				<% end %>
