@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20121122022030) do
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
     t.string   "role",                   :default => "non_admin"
-    t.integer  "phone_number"
+    t.string   "phone_number"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -18,7 +18,9 @@ class ListsController < ApplicationController
 
 		if @list.save
 			flash[:notice] = "#{@list.name} has been created. Go ahead and add some tasks!"
-			send_twilio(@list.name, current_user.phone_number)
+			unless current_user.phone_number.nil?
+				send_twilio(@list.name, current_user.phone_number) 
+			end
 			redirect_to @list
 		else
 			flash[:alert] = "Something went wrong. Try again"
@@ -78,7 +80,7 @@ class ListsController < ApplicationController
 
 		@client.account.sms.messages.create(
 		  :from => '+14156399417',
-  		:to => "#{phone_number}",
+  		:to => "1#{phone_number}",
   		:body => "#{list_name} list has been added."
 			)
 	end
