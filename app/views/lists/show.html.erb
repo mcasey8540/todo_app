@@ -28,7 +28,7 @@
 		<table class= "table table-striped table-bordered"
 			<tr>
 				<th><%= sortable "description" %></th>
-				<th><%= sortable "priority"%> </th>
+				<th><%= sortable "priority" %> </th>
 				<th><%=	sortable "due_at", "Due Date" %></th>
 				<th><%=	sortable "completed", "Status" %></th>
 				<th>Options</th>
@@ -43,7 +43,7 @@
 			<td width="50"><span class="label label-success"><%= task.priority %></span></td> 
 				<% end %>
 			<td width ="200"><%= task.due_at.to_date %></td>
-			<td><%= task.completed ? "Completed" : "Incomplete" %></td>
+			<td><%= task.completed ? "Complete" : "Incomplete" %></td>
 			<td withd="200">
 				<div class="btn-group">
 					<button class="btn">
@@ -66,4 +66,4 @@
 		<% end %>
 		</table>
 	</br>
-<%= link_to "All My Todo Lists", lists_path, class: "btn btn-info" %>
+<%= link_to "Back to All Lists", lists_path, class: "btn btn-info" %>

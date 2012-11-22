@@ -4,7 +4,7 @@ class ListsController < ApplicationController
 	respond_to :html, :json
 
 	def index 
-		@lists = current_user.lists
+		@lists = current_user.lists.order(sort_column + " " + sort_direction)
 	end
 
 	def new
@@ -26,10 +26,9 @@ class ListsController < ApplicationController
 	end
 
 	def show
-		#debugger
 		@list = current_user.lists.find_by_id(params[:id])
 		if @list
-			@tasks = Task.for_list(@list).order(sort_column + " " + sort_direction)
+			@tasks = Task.for_list(@list).order(sort_column('tasks') + " " + sort_direction)
 	 		@task = @list.tasks.new
 	 	else
 	 		flash[:alert] = "Oops. Looks like you're trying to access someone else's list."
@@ -71,8 +70,12 @@ class ListsController < ApplicationController
 
 	private 
 
-	def sort_column
-    Task.column_names.include?(params[:sort]) ? params[:sort] : "description"
+	def sort_column(type=nil)
+    if type == 'tasks'
+    	Task.column_names.include?(params[:sort]) ? params[:sort] : "description"
+    else 
+    	List.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
   end
   
   def sort_direction
