@@ -6,3 +6,6 @@ jQuery ->
   $('#datepicker').datepicker
     minDate: -0, 
     dateFormat: 'yy-mm-dd'
+
+  $('input#task_tag').autocomplete
+  	source: ["Home","Work","Travel","Personal", "Fun","Health","Other"]
