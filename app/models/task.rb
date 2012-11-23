@@ -3,7 +3,8 @@ class Task < ActiveRecord::Base
 
   validates :description, :length => { :minimum => 3}
   #validate :due_date_must_be_today_or_later
-  validates :priority, :inclusion => { :in => %w(low high), :message => "must select high or low"}  
+  validates :priority, :inclusion => { :in => %w(low high), :message => "must select high or low"} 
+  validates :tag, presence: :true 
 
   belongs_to :list
 
