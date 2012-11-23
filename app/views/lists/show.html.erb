@@ -53,6 +53,7 @@
 				<th><%= sortable "priority" %> </th>
 				<th><%=	sortable "due_at", "Due Date" %></th>
 				<th><%=	sortable "completed", "Status" %></th>
+				<th><%= sortable "tag" %></th>
 				<th>Options</th>
 			</tr>
 
@@ -66,6 +67,7 @@
 				<% end %>
 			<td width ="200"><%= task.due_at.to_date %></td>
 			<td><%= task.completed ? "Complete" : "Incomplete" %></td>
+			<td width ="100"><%= task.tag %>
 			<td withd="200">
 				<div class="btn-group">
 					<button class="btn">

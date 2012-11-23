@@ -1,10 +1,11 @@
 class Task < ActiveRecord::Base
   attr_accessible :completed, :description, :list_id, :priority, :due_at, :tag
 
-  validates :description, :length => { :minimum => 3}
+  validates :description, :length => { :in => 3..30}
   #validate :due_date_must_be_today_or_later
   validates :priority, :inclusion => { :in => %w(low high), :message => "must select high or low"} 
   validates :tag, presence: :true 
+
 
   belongs_to :list
 
