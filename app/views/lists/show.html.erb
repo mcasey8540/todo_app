@@ -26,7 +26,9 @@
 	<% @percent_incomplete = (@count_incomplete/@list_count)*100 %>
 </br>
 <h4>My Progress</h4>
-<%= @percent_complete.to_i %>% complete</p>
+	<% unless @percent_complete.to_s == "NaN" %>
+		<%= @percent_complete.to_i %>% complete </p> 
+	<% end %>
 <div class="progress" style="width: 50%;">
   <div class="bar bar-success" value="100" style="width:<%= @percent_complete%>%;"></div>
   <div class="bar bar-warning" style="width:<%= @percent_incomplete%>%;"></div>
