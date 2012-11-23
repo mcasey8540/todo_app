@@ -7,5 +7,7 @@ jQuery ->
     minDate: -0, 
     dateFormat: 'yy-mm-dd'
 
-  $("input#task_tag").autocomplete
-    source: ["Travel", "Home", "Work", "School", "Fun", "Financial", "Personal"]
+
+  $('input#task_tag').autocomplete
+  	source: ["Home","Work","Travel","Personal", "Fun","Health","Other"]
+
