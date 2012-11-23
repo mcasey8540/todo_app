@@ -4,23 +4,21 @@
 <div class="alert alert-success"><%= notice %></div>
 <% end %>
 
-		<table class= "table table-striped table-bordered">	
 
 		<%= form_for [@list,@task], :validate => true do |f| %>	
 
-			<tr>
-				<td><%= f.text_field :description, :size => 75 , :placeholder => "Task Description" %>
-				</td>
+				<p><%= f.text_field :description, :size => 75 , :placeholder => "Task Description" %>
+				</p>
+					<p><%= f.text_field :tag, :placeholder => "Task Tag" %></p>
 				<% if @task.due_at.nil? %>
-					<td><%= f.text_field :due_at, :placeholder => "Due Date", id: "datepicker"%></td>
+					<p><%= f.text_field :due_at, :placeholder => "Due Date", id: "datepicker"%></p>
 				<% else %>
-					<td><%= f.text_field :due_at, :value => @task.due_at.to_date, id: "datepicker"%></td>
-				<% end %> 
-				<td>Priority <%= f.select(:priority, options_for_select(['low','high'])) %></td>
-				<td><%= f.submit class: "btn btn-info" %></td>
-			</tr> 
+					<p><%= f.text_field :due_at, :value => @task.due_at.to_date, id: "datepicker"%></p>
+				<% end %>
+				<p><%= f.select(:priority, options_for_select(['Select Priority','low','high'])) %></p>
+				</br>
+				<p><%= f.submit class: "btn btn-info" %></p>
 			<% end %> 
-		</table>
 	</br>
 	<%= link_to "Back to #{@list.description.titleize}", @list , class: "btn btn-info"%>
 	
