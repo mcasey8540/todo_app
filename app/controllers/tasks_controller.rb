@@ -51,7 +51,7 @@ class TasksController < ApplicationController
 		if @task.update_attributes(params[:task])
 			flash[:notice] = "#{@task.description} successfully updated"
 			redirect_to @list
-		else 
+		else
 			flash[:alert] = "Something went wrong. Try again"
 			redirect_to @list
 		end
@@ -69,7 +69,7 @@ class TasksController < ApplicationController
 	end
 
 private
-	
+
 	def find_list
 		@list = List.find(params[:list_id])
 	end

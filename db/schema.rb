@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20121125005020) do
     t.string   "priority",      :default => "low"
     t.datetime "due_at"
     t.string   "tag"
-    t.integer  "sms_frequency"
+    t.string   "sms_frequency"
   end
 
   create_table "users", :force => true do |t|

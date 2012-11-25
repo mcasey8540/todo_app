@@ -5,7 +5,7 @@
 <% end %>
 
 
-		<%= form_for [@list,@task], :validate => true do |f| %>	
+		<%= form_for [@list,@task], :validate => true do |f| %>
 
 				<p><%= f.text_field :description, :size => 75 , :placeholder => "Task Description" %>
 				</p>
@@ -16,10 +16,11 @@
 					<p><%= f.text_field :due_at, :value => @task.due_at.to_date, id: "datepicker"%></p>
 				<% end %>
 				<p><%= f.select(:priority, options_for_select(['Select Priority','low','high'])) %></p>
+        <p><%= f.select(:sms_frequency, options_for_select(['Set SMS Reminder','5 days','1 day'])) %></p>
 				</br>
 				<p><%= f.submit class: "btn btn-info" %></p>
-			<% end %> 
+			<% end %>
 	</br>
 	<%= link_to "Back to #{@list.description.titleize}", @list , class: "btn btn-info"%>
-	
+
 
