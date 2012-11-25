@@ -1,4 +1,4 @@
 todo_app
 ========
 
-App to make Todo lists
+Todo App helps you make todo lists which aids in life productivity.
