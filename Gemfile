@@ -3,11 +3,12 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.9'
 gem 'bootstrap-sass'
 gem 'twilio-ruby'
+gem 'uber_config'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'colorize'
 gem 'devise'
 gem 'cancan'
@@ -16,6 +17,8 @@ gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'date_validator'
 gem 'titleize'
+gem 'pg'
+#gem 'taps'
 
 # Gems used only for assets and not required
 # in production environments by default.

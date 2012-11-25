@@ -1,0 +1,11 @@
+runtime 'ruby'
+
+# dependencies
+gem 'twilio-ruby'
+gem 'uber_config'
+
+# Merging all of our Rails apps models
+dir '../app/models'
+
+# executable
+exec 'sms.rb'
