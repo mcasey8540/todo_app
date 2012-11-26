@@ -6,7 +6,9 @@ class TasksController < ApplicationController
 
 	def create
 		@task = @list.tasks.new(params[:task])
+
 		if @task.save
+			schedule_sms(@task.sms_frequency)
 			flash[:notice] = "Yay, #{@task.description} has been added. Now get working!"
 			redirect_to @list
 		else
@@ -72,6 +74,17 @@ private
 
 	def find_list
 		@list = List.find(params[:list_id])
+	end
+
+	def schedule_sms(sms_frequency)
+		@iw = IronWorkerNG::Client.new
+		@iw.schedules.create("sms",
+                     @config,
+                     {
+                         #This is the schedule
+                         :start_at => Time.now,
+                         :run_every => sms_frequency.to_i * 60
+                     })
 	end
 
 end

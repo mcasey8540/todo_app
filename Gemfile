@@ -4,6 +4,7 @@ gem 'rails', '3.2.9'
 gem 'bootstrap-sass'
 gem 'twilio-ruby'
 gem 'uber_config'
+gem 'iron_worker_ng'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
