@@ -8,7 +8,7 @@ class TasksController < ApplicationController
 		@task = @list.tasks.new(params[:task])
 
 		if @task.save
-			schedule_sms(@task.sms_frequency)
+			schedule_sms(@task)
 			flash[:notice] = "Yay, #{@task.description} has been added. Now get working!"
 			redirect_to @list
 		else
@@ -76,14 +76,16 @@ private
 		@list = List.find(params[:list_id])
 	end
 
-	def schedule_sms(sms_frequency)
+	def schedule_sms(task)
 		@iw = IronWorkerNG::Client.new
+		@iw.tasks.create("sms", description: task.description, due_at: task.due_at, to: current_user.phone_number )
 		@iw.schedules.create("sms",
                      @config,
                      {
                          #This is the schedule
-                         :start_at => Time.now,
-                         :run_every => sms_frequency.to_i * 60
+                         :start_at => task.due_at - (3600 * task.sms_frequency.to_i),
+                         :run_times => 1,
+                         #:end_at => Time.now + 180
                      })
 	end
 

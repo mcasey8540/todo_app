@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
   validates :description, :length => { :in => 3..30}
 
   validates :priority, :inclusion => { :in => %w(low high), :message => "must select high or low"}
-  validates :sms_frequency, :inclusion => { :in => ["5 days", "1 day"], :message => "must select 5 days or 1 day"}
+  validates :sms_frequency, :inclusion => { :in => ["5 hours", "3 hours", "1 hour"], :message => "must select 5, 3 or 1 hours"}
   validates :tag, presence: :true
 
   belongs_to :list

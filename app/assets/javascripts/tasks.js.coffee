@@ -7,8 +7,6 @@ jQuery ->
     minDate: -0, 
     dateFormat: 'yy-mm-dd'
 
-  $('#timepicker').timepicker
-
   $('input#task_tag').autocomplete
   	source: ["Home","Work","Travel","Personal", "Fun","Health","Other"]
 
