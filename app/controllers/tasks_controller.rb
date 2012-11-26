@@ -77,13 +77,20 @@ private
 	end
 
 	def schedule_sms(task)
+		d = task.due_at.to_s
+		time = Time.new(d[0..3],d[5..6],d[8..9]) - (3600 * task.sms_frequency.to_i )
 		@iw = IronWorkerNG::Client.new
-		@iw.tasks.create("sms", description: task.description, due_at: task.due_at, to: current_user.phone_number )
-		@iw.schedules.create("sms",
-                     @config,
+		@iw.schedules.create("sms", 
+										{
+										description: task.description, 
+										sms_frequency: task.sms_frequency, 
+										due_at: task.due_at.to_date, 
+										to: current_user.phone_number,
+										},	
                      {
                          #This is the schedule
-                         :start_at => task.due_at - (3600 * task.sms_frequency.to_i),
+                         :start_at => time,
+                         #:start_at => task.due_at - (3600 * task.sms_frequency.to_i),
                          :run_times => 1,
                          #:end_at => Time.now + 180
                      })
