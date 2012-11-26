@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(:version => 20121125005020) do
 
   create_table "tasks", :force => true do |t|
     t.string   "description"
-    t.boolean  "completed",     :default => false
+    t.boolean  "completed",    :default => false
     t.integer  "list_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.string   "priority",      :default => "low"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "priority",     :default => "low"
     t.datetime "due_at"
     t.string   "tag"
-    t.string   "sms_frequency"
+    t.string   "sms_reminder"
   end
 
   create_table "users", :force => true do |t|

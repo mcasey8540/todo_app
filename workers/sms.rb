@@ -7,9 +7,9 @@ from = '+14156399417'
 to = @params[:to]
 
 if @params[:sms_reminder].to_i < 2
-	body = "Hello from TodoApp! You set a SMS reminder for '#{@params[:description]}' that will occur #{@params[:sms_frequency]} hour before the due date: #{@params[:due_at]}."
+	body = "Hello from TodoApp! You set a SMS reminder for '#{@params[:description]}' that will occur #{@params[:sms_reminder]} hour before the due date: #{@params[:due_at]}."
 else 
-	body = "Hello from TodoApp! You set a SMS reminder for '#{@params[:description]}' that will occur #{@params[:sms_frequency]} hours before the due date: #{@params[:due_at]}."
+	body = "Hello from TodoApp! You set a SMS reminder for '#{@params[:description]}' that will occur #{@params[:sms_reminder]} hours before the due date: #{@params[:due_at]}."
 end
 
 

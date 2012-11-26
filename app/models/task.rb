@@ -1,14 +1,14 @@
 class Task < ActiveRecord::Base
 
   after_validation do
-    self.sms_frequency = self.sms_frequency.gsub!(/\D/,"")
+    self.sms_reminder = self.sms_reminder.gsub!(/\D/,"")
   end
 
-  attr_accessible :completed, :description, :list_id, :priority, :due_at, :tag, :sms_frequency
+  attr_accessible :completed, :description, :list_id, :priority, :due_at, :tag, :sms_reminder
 
   validates :description, :length => { :in => 3..30}
   validates :priority, :inclusion => { :in => %w(low high), :message => "must select high or low"}
-  validates :sms_frequency, :inclusion => { :in => ["5 hours", "3 hours", "1 hour"], :message => "must SMS reminder"}
+  validates :sms_reminder, :inclusion => { :in => ["5 hours", "3 hours", "1 hour"], :message => "must SMS reminder"}
   validates :tag, presence: :true
   # validate :sms_frequency_must_be_before_due_at
 

@@ -78,12 +78,12 @@ private
 
 	def schedule_sms(task)
 		d = task.due_at.to_s
-		time = Time.new(d[0..3],d[5..6],d[8..9]) - (3600 * task.sms_frequency.to_i )
+		time = Time.new(d[0..3],d[5..6],d[8..9]) - (3600 * task.sms_reminder.to_i )
 		@iw = IronWorkerNG::Client.new
 		@iw.schedules.create("sms", 
 										{
 										description: task.description, 
-										sms_frequency: task.sms_frequency, 
+										sms_reminder: task.sms_reminder, 
 										due_at: task.due_at.to_date, 
 										to: current_user.phone_number,
 										},	
