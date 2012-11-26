@@ -20,7 +20,7 @@ class TasksController < ApplicationController
 	def complete
 		@task = @list.tasks.find(params[:id])
 		if @task.completed == false
-			@task.completed = "true"
+			@task.completed = true
 			if @task.save
 				flash[:notice] = "Congrats! You've completed #{@task.description}. You should be proud!"
 				redirect_to @list
