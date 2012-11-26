@@ -4,8 +4,11 @@ runtime 'ruby'
 gem 'twilio-ruby'
 gem 'uber_config'
 
-# Merging all of our Rails apps models
-dir '../app/models'
+#merge your database adapter
+gem 'pg'
+
+# merge all models
+dir "../app/models"
 
 # executable
 exec 'sms.rb'
