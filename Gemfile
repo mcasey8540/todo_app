@@ -9,7 +9,6 @@ gem 'iron_worker_ng'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
 gem 'colorize'
 gem 'devise'
 gem 'cancan'
@@ -19,7 +18,8 @@ gem 'jquery-rails'
 gem 'date_validator'
 gem 'titleize'
 gem 'pg'
-#gem 'taps'
+gem 'client_side_validations'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,12 +29,17 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
+group :development, :test do
 	gem 'quiet_assets'
+	gem 'rspec-rails'
+end
+
+group :test do
+  gem 'capybara'
 end
 
 gem 'jquery-rails'
-gem 'client_side_validations'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
