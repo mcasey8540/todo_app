@@ -31,6 +31,10 @@ group :development, :test do
 	gem 'debugger'
 end
 
+group :production do 
+	gem 'pg'
+end
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
