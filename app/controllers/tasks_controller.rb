@@ -7,7 +7,7 @@ class TasksController < ApplicationController
 		@task = @list.tasks.new(params[:task])
 
 		if @task.save
-			schedule_sms(@task)
+			Task.schedule_sms(@task, current_user)
 			flash[:notice] = "Yay, #{@task.description} has been added. Now get working!"
 			redirect_to @list
 		else
@@ -32,7 +32,8 @@ class TasksController < ApplicationController
 	def update
 		@task = @list.tasks.find(params[:id])
 		if @task.update_attributes(params[:task])
-			schedule_sms(@task)
+			 Task.cancel_sms_reminder(@task,current_user)
+			 Task.schedule_sms(@task, current_user)
 			flash[:notice] = "#{@task.description} successfully updated"
 			redirect_to @list
 		else
@@ -43,6 +44,7 @@ class TasksController < ApplicationController
 
 	def delete
 		@task = Task.find(params[:id])
+		Task.cancel_sms_reminder(@task,current_user)
 		if @task.destroy
 			flash[:notice] = "#{@task.description} has been successfully deleted"
 			redirect_to @list
@@ -56,28 +58,6 @@ private
 
 	def find_list
 		@list = List.find(params[:list_id])
-	end
-
-	def schedule_sms(task)
-		unless task.sms_reminder.nil? 
-			d = task.due_at.to_s
-			time = Time.new(d[0..3],d[5..6],d[8..9]) - (3600 * task.sms_reminder.to_i )
-			@iw = IronWorkerNG::Client.new
-			@iw.schedules.create("sms", 
-											{
-											description: task.description, 
-											sms_reminder: task.sms_reminder, 
-											due_at: task.due_at.to_date, 
-											to: current_user.phone_number,
-											},	
-	                     {
-	                         #This is the schedule
-	                         :start_at => time,
-	                         #:start_at => task.due_at - (3600 * task.sms_frequency.to_i),
-	                         :run_times => 1,
-	                         #:end_at => Time.now + 180
-	                     })
-		end
 	end
 
 end

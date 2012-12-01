@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   validates :phone_number, :format => { :with => /^\d{10}$/,
   :message => "must be 10 digits" }
+  validates_uniqueness_of :phone_number
+
 
   before_validation :phone_number_format
 
