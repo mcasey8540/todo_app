@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore IronWorker and Twilio API data
-/workers/*
+/workers
