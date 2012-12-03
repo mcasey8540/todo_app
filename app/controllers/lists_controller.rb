@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-	helper_method :sort_column, :sort_direction, :send_twilio
+	helper_method :sort_column, :sort_direction
 	respond_to :html, :json
 
 	def index 
@@ -12,15 +12,11 @@ class ListsController < ApplicationController
 	end
 
 	def create
-		#@list = List.new(params[:list])
 		@user = current_user
 		@list = @user.lists.new(params[:list])
 
 		if @list.save
 			flash[:notice] = "#{@list.name} has been created. Go ahead and add some tasks!"
-			unless current_user.phone_number.nil?
-				send_twilio(@list.name, current_user.phone_number) 
-			end
 			redirect_to @list
 		else
 			flash[:alert] = "Something went wrong. Try again"
@@ -72,18 +68,6 @@ class ListsController < ApplicationController
 	end
 
 	private 
-
-	def send_twilio(list_name,phone_number)
-		account_sid = 'AC1714be77fe4c23e291215baead5e5b5f'
-		auth_token = 'c55f2685349b65367edb9dfba4fc142b'
-		@client = Twilio::REST::Client.new account_sid, auth_token
-
-		@client.account.sms.messages.create(
-		  :from => '+14156399417',
-  		:to => "1#{phone_number}",
-  		:body => "#{list_name} list has been added."
-			)
-	end
 
 	def sort_column(type=nil)
     if type == 'tasks'
