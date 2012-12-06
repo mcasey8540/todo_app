@@ -29,8 +29,7 @@ development:
   encoding: unicode
   database: todo_development
   pool: 5
-  username: todo_master
-  password:
+  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -40,16 +39,14 @@ test:
   encoding: unicode
   database: todo_test
   pool: 5
-  username: todo_master
-  password:
+  timeout: 5000
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: todo_test
+  database: todo_production
   pool: 5
-  username: todo_master
-  password:
+  timeout: 5000
 
 
 

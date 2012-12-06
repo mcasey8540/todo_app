@@ -5,9 +5,6 @@ gem 'bootstrap-sass'
 gem 'twilio-ruby'
 gem 'uber_config'
 gem 'iron_worker_ng'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'jquery-rails'
 gem 'colorize'
 gem 'devise'
@@ -19,9 +16,6 @@ gem 'date_validator'
 gem 'titleize'
 gem 'pg'
 gem 'client_side_validations'
-
-# Gems used only for assets and not required
-# in production environments by default.
 
 group :development, :test do
 	gem 'quiet_assets'
