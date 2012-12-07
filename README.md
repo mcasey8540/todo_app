@@ -1,5 +1,6 @@
 Todo App
 ========
+-IN PROGRESS
 
 Now you can make todo lists with tasks to help keep your life organized.
 
