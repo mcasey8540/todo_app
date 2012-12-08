@@ -61,7 +61,7 @@ class ListsController < ApplicationController
 
 	def clear_completed
 		@list = List.find(params[:id])
-		if @list.tasks.complete.destroy_all
+		if @list.tasks.where(:completed => true).destroy_all
 			flash[:notice] = "Completed tasks have been cleared"
 			redirect_to @list
 		end

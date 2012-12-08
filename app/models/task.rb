@@ -13,6 +13,8 @@ class Task < ActiveRecord::Base
     where(:list_id => list.id)
   end
 
+  
+
   def self.complete_task(task_id)
     task = find(task_id)
     task.completed? ? task.completed = false : task.completed = true
