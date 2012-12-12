@@ -2,17 +2,19 @@ Todo App
 ========
 -IN PROGRESS
 
-Now you can make todo lists with tasks to help keep your life organized.
+Todo app lets you create lists with tasks to help keep your life organized
 
 Features include:
 
--tags for each task (work, travel, personal, etc.)
+-Attribute tags to each task (work, travel, personal, etc.)
 
--sms reminders for each task (5, 3 and 1 hour before task due)
+-Set SMS text reminders to occur 5, 3 or 1 hour before task due date
 
--progress bar to see percentage of tasks completed
+-Progress bar to show you the percentage of tasks completed versus outstanding 
 
--sortable columsn to filter by task name, due date, completeness and priority
+-Attribute a priority to each task, either high or low
+
+-Sortable columns to filter by task name, due date, completeness and priority
 
 
 
