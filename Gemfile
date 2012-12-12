@@ -17,13 +17,13 @@ gem 'titleize'
 gem 'pg'
 gem 'client_side_validations'
 
-group :development, :test do
+group :test, :development do
 	gem 'simplecov'
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'guard-rspec'
 	gem 'debugger'
-	gem 'factory_girl_rails', '~> 4.0'
+	gem "factory_girl_rails", "~> 4.0"
   platform :ruby_19 do
 	  gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
 	  gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
